@@ -1,24 +1,24 @@
 import React from 'react';
-import styles from './Card.module.scss'
+import styles from './Card.module.scss';
 
-function Card({ title, imageUrl, price, onFavorite, onPlus }) {
+function Card({ id, title, imageUrl, price, onFavorite, onPlus, favorited = false }) {
     const [isAdded, setIsAdded] = React.useState(false);
-    const [isFavorite, setIsFavorite] = React.useState(false);
+    const [isFavorite, setIsFavorite] = React.useState(favorited);
 
-    const OnClickPlus = () => {
+    const onClickPlus = () => {
         onPlus({ title, imageUrl, price });
         setIsAdded(!isAdded);
-    }
+    };
 
-    const OnClickFavorite = () => {
+    const onClickFavorite = () => {
+        onFavorite({ id, title, imageUrl, price });
         setIsFavorite(!isFavorite);
-    }
+    };
 
     return (
         <div className={styles.card}>
-            <div className={styles.favorite} onClick={OnClickFavorite} >
-                <img
-                    src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"} alt="Unliked" />
+            <div className={styles.favorite} onClick={onClickFavorite}>
+                <img src={isFavorite ? '/img/liked.svg' : '/img/unliked.svg'} alt="Unliked" />
             </div>
             <img width={133} height={112} src={imageUrl} alt="Sneakers" />
             <h5>{title}</h5>
@@ -29,12 +29,12 @@ function Card({ title, imageUrl, price, onFavorite, onPlus }) {
                 </div>
                 <img
                     className={styles.plus}
-                    onClick={OnClickPlus}
-                    src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
+                    onClick={onClickPlus}
+                    src={isAdded ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
                     alt="Plus"
                 />
             </div>
-        </div >
+        </div>
     );
 }
 
