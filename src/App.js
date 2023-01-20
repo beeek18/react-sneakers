@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
@@ -61,20 +61,20 @@ function App() {
 
       <Header onClickCart={() => setCartOpened(true)} />
 
-      <Route path="/" exact>
-        <Home
+      <Routes>
+        <Route path="/" element={<Home
           items={items}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           onChangeSearchInput={onChangeSearchInput}
           onAddToFavorite={onAddToFavorite}
-          onAddToCart={onAddToCart}
+          onAddToCart={onAddToCart} />}
         />
-      </Route>
-
-      <Route path="/favorites" exact>
-        <Favorites items={favorites} onAddToFavorite={onAddToFavorite} />
-      </Route>
+        <Route path="/favorites" element={
+          <Favorites items={favorites} onAddToFavorite={onAddToFavorite}
+          />}
+        />
+      </Routes>
     </div>
   );
 }
