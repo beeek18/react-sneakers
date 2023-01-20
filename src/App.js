@@ -7,6 +7,7 @@ import Drawer from './components/Drawer'
 function App() {
   const [items, setItems] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
 
@@ -28,6 +29,11 @@ function App() {
     console.log(id);
     axios.delete(`https://63c590a5f3a73b347859655a.mockapi.io/cart/${id}`);
     setCartItems(prev => prev.filter(item => item.id != id));
+  }
+
+  const onAddToFavorite = (obj) => {
+    axios.post('https://63c590a5f3a73b347859655a.mockapi.io/favorites', obj);
+    setFavorites(prev => [...prev, obj]);
   }
 
   const onChangeSearchInput = (event) => {
