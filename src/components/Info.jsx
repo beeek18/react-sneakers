@@ -1,23 +1,20 @@
 import React from 'react';
-import Card from '../components/Card';
 import AppContext from '../context';
 
-function Favorites() {
-  const { favorites, onAddToFavorite } = React.useContext(AppContext);
+const Info = ({ title, image, description }) => {
+  const { setCartOpened } = React.useContext(AppContext);
 
   return (
-    <div className="content p-40">
-      <div className="d-flex align-center justify-between mb-40">
-        <h1>Мои закладки</h1>
-      </div>
-
-      <div className="d-flex flex-wrap">
-        {favorites.map((item, index) => (
-          <Card key={index} favorited={true} onFavorite={onAddToFavorite} {...item} />
-        ))}
-      </div>
+    <div className="cartEmpty d-flex align-center justify-center flex-column flex">
+      <img className="mb-20" width="120px" src={image} alt="Empty" />
+      <h2>{title}</h2>
+      <p className="opacity-6">{description}</p>
+      <button onClick={() => setCartOpened(false)} className="greenButton">
+        <img src="img/arrow.svg" alt="Arrow" />
+        Вернуться назад
+      </button>
     </div>
   );
-}
+};
 
-export default Favorites;
+export default Info;
