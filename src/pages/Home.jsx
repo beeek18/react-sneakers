@@ -19,7 +19,7 @@ function Home({
         key={index}
         onFavorite={(obj) => onAddToFavorite(obj)}
         onPlus={(obj) => onAddToCart(obj)}
-        // added={CartItems.some((obj)=>Number(obj.id) === Number(item.id))} // Если убрать, то видны кросы
+        // added={CartItems.some((obj) => Number(obj.id) === Number(item.id))} // Если убрать, то видны кросы
         loading={isLoading}
         {...item}
       />

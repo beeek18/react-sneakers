@@ -8,7 +8,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
 
                 {items.length > 0 ? (
                     <div>
-                        <div className="items">
+                        <div className="d-flex flex-column flex">
                             {items.map((obj) => (
                                 <div key={obj.id} className="cartItem d-flex align-center mb-20">
                                     <div

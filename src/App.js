@@ -34,9 +34,9 @@ function App() {
   }, []);
 
   const onAddToCart = (obj) => {
-    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) { // Numbers если убрать, то товар исчезает, но в бэке остаётся
+    if (cartItems.find((item) => (item.id) === (obj.id))) { // Numbers если убрать, то товар исчезает, но в бэке остаётся
       axios.delete(`https://63c590a5f3a73b347859655a.mockapi.io/cart/${obj.id}`);
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id))) // Numbers если убрать, то товар исчезает, но в бэке остаётся
+      setCartItems((prev) => prev.filter((item) => (item.id) !== (obj.id))) // Numbers если убрать, то товар исчезает, но в бэке остаётся
     } else {
       axios.post('https://63c590a5f3a73b347859655a.mockapi.io/cart', obj);
       setCartItems((prev) => [...prev, obj]);
@@ -51,10 +51,10 @@ function App() {
   const onAddToFavorite = async (obj) => {
     try {
       if (favorites.find((favObj) => favObj.id === obj.id)) {
-        axios.delete(`https://63c590a5f3a73b347859655a.mockapi.io/favorites/${obj.id}`);
+        // axios.delete(`https://63c590a5f3a73b347859655a.mockapi.io/favorites/${obj.id}`); Не прогружается фавориты, т.к нет апи
       } else {
-        const { data } = await axios.post('https://63c590a5f3a73b347859655a.mockapi.io/favorites', obj);
-        setFavorites((prev) => [...prev, data]);
+        // const { data } = await axios.post('https://63c590a5f3a73b347859655a.mockapi.io/favorites', obj); Не прогружается фавориты, т.к нет апи
+        // setFavorites((prev) => [...prev, data]);
       }
     } catch (error) {
       alert('Не удалось добавить в фавориты');
