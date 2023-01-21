@@ -13,22 +13,34 @@ function App() {
   const [favorites, setFavorites] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState('');
   const [cartOpened, setCartOpened] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    axios.get('https://63c590a5f3a73b347859655a.mockapi.io/items').then((res) => {
-      setItems(res.data);
-    });
-    axios.get('https://63c590a5f3a73b347859655a.mockapi.io/cart').then((res) => {
-      setCartItems(res.data);
-    });
-    axios.get('https://63c590a5f3a73b347859655a.mockapi.io/favorites').then((res) => {
-      setFavorites(res.data);
-    });
+    async function fetchData() {
+      setIsLoading(true)
+      const cartResponse = await axios.get('https://63c590a5f3a73b347859655a.mockapi.io/cart');
+      // const favoritesResponse = await axios.get('https://63c590a5f3a73b347859655a.mockapi.io/favorites'); // Не прогружается фавориты, т.к нет апи
+      const itemsResponse = await axios.get('https://63c590a5f3a73b347859655a.mockapi.io/items');
+
+      setIsLoading(false)
+
+
+      setCartItems(cartResponse.data)
+      // setFavorites(favoritesResponse.data) // Не прогружается фавориты, т.к нет апи
+      setItems(itemsResponse.data)
+    }
+
+    fetchData()
   }, []);
 
   const onAddToCart = (obj) => {
-    axios.post('https://63c590a5f3a73b347859655a.mockapi.io/cart', obj);
-    setCartItems((prev) => [...prev, obj]);
+    if (cartItems.find((item) => Number(item.id) === Number(obj.id))) { // Numbers если убрать, то товар исчезает, но в бэке остаётся
+      axios.delete(`https://63c590a5f3a73b347859655a.mockapi.io/cart/${obj.id}`);
+      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id))) // Numbers если убрать, то товар исчезает, но в бэке остаётся
+    } else {
+      axios.post('https://63c590a5f3a73b347859655a.mockapi.io/cart', obj);
+      setCartItems((prev) => [...prev, obj]);
+    }
   };
 
   const onRemoveItem = (id) => {
@@ -64,11 +76,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home
           items={items}
+          cartItems={cartItems}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           onChangeSearchInput={onChangeSearchInput}
           onAddToFavorite={onAddToFavorite}
-          onAddToCart={onAddToCart} />}
+          onAddToCart={onAddToCart}
+          isLoading={!items.length}
+        />}
         />
         <Route path="/favorites" element={<Favorites items={favorites} onAddToFavorite={onAddToFavorite} />} />
       </Routes>

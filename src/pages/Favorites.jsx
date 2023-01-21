@@ -1,4 +1,4 @@
-import Card from '../components/Card';
+import Card from "../components/Card";
 
 function Favorites({ items, onAddToFavorite }) {
   return (
@@ -9,7 +9,12 @@ function Favorites({ items, onAddToFavorite }) {
 
       <div className="d-flex flex-wrap">
         {items.map((item, index) => (
-          <Card key={index} favorited={true} onFavorite={onAddToFavorite} {...item} />
+          <Card
+            key={index}
+            favorited={true}
+            onFavorite={onAddToFavorite}
+            {...item}
+          />
         ))}
       </div>
     </div>
