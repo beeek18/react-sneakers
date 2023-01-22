@@ -1,8 +1,8 @@
 Stack:
 
-ReactJS + хуки
+/*ReactJS + хуки
 React Router
 Axios
 SCSS
 React Context
-React Skeleton
+React Skeleton*/
