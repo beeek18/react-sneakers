@@ -2,11 +2,8 @@
   "name": "test",
   "version": "0.1.0",
   "private": true,
-<<<<<<< Updated upstream
-=======
   "homepage": "http://yuribenjamin.github.io/my-app",
   "proxy":"https://mockapi.io/projects/63c590a5f3a73b347859655b",
->>>>>>> Stashed changes
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -25,13 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-<<<<<<< Updated upstream
-    "eject": "react-scripts eject"
-=======
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
->>>>>>> Stashed changes
   },
   "eslintConfig": {
     "extends": [
