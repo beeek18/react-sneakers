@@ -1,6 +1,8 @@
 <h1>Online store of sneakers - 👟 React Sneakers V2 👟
 
-<h2>🛠 Stack:<h2>
+<h2>🛠 Stack:
+
+<h4>
 
 <li>ReactJS
 <li>React Hooks (hooks)
