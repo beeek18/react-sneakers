@@ -3,7 +3,6 @@
 <h2>🛠 Stack:
 
 <h4>
-
 <li>ReactJS
 <li>React Hooks (hooks)
 <li>React Router (navigate)
