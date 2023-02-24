@@ -1,4 +1,4 @@
-<h1>Online store of sneakers - 👟 React Sneakers V2 👟
+<h1>Online store of sneakers - 👟 Sneakers V2 👟
 
 <h2>🛠 Stack:
 
