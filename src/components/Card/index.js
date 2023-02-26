@@ -1,6 +1,6 @@
 import React from 'react'
 
-const index = () => {
+const Card = () => {
   return (
     <div>index</div>
   )
